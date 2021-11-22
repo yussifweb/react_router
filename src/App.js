@@ -2,8 +2,9 @@ import React from 'react';
 import './App.css';
 import Nav from './Nav';
 import About from './About';
-import Shop from './Shop';
+import ShopList from './ShopList';
 import ItemDetail from './ItemDetail';
+import users from './users.json';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 function App() {
@@ -14,8 +15,25 @@ function App() {
       <Switch>
       <Route path="/" exact component={Home} />
       <Route path="/about" component={About} />
-      <Route path="/shop" exact component={Shop} />
-      <Route path="/shop/:id" component={ItemDetail}/>
+      <Route path="/shop" exact component={ShopList} >
+        <div>
+        {
+          users.users.map((user) => {
+            return <ShopList key={user.id}></ShopList>
+          }
+          )
+        }
+
+        </div>
+      </Route>
+      {/* <Route path="/shop/:id" component={ItemDetail}>
+        {
+          users.users.map((user) => {
+          return <ShopList key={user.id}>name={user.name}</ShopList>
+          }
+          )
+        }
+      </Route> */}
       </Switch> 
     </div>
     </Router>
